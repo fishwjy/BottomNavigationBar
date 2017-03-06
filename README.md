@@ -1,6 +1,7 @@
 # BottomNavigationBar
 [![Download](https://api.bintray.com/packages/vincentwoo/maven/BottomNavigationBar/images/download.svg) ](https://bintray.com/vincentwoo/maven/BottomNavigationBar/_latestVersion)
 [![API](https://img.shields.io/badge/API-14%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=14)
+
 A light bottom navigation bar in Android supporting Tint mode.
 
 Please star this library if you like it. :)
