@@ -1,4 +1,6 @@
 # BottomNavigationBar
+[![Download](https://api.bintray.com/packages/vincentwoo/maven/BottomNavigationBar/images/download.svg) ](https://bintray.com/vincentwoo/maven/BottomNavigationBar/_latestVersion)
+[![API](https://img.shields.io/badge/API-14%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=14)
 A light bottom navigation bar in Android supporting Tint mode.
 
 Please star this library if you like it. :)
@@ -7,10 +9,13 @@ Please star this library if you like it. :)
 ![Demo](/pic/demo.gif)
 
 ## Usage
-### 1.Get BottomNavigationBar from XML
+### 1.Import to your project
+    compile 'com.vincent.bottomnavigationbar:bottomnavigationbar:latestVersion' 
+    
+### 2.Get BottomNavigationBar from XML
     BottomNavigationBar bnb = (BottomNavigationBar) findViewById(R.id.bnb_default);
 
-### 2.New BottomItem 
+### 3.New BottomItem 
 
     Tint Mode: 
     BottomItem item = new BottomItem();
