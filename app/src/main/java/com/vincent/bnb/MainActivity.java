@@ -54,30 +54,40 @@ public class MainActivity extends AppCompatActivity {
         BottomItem item1 = new BottomItem();
         item1.setText("Bag");
         item1.setIconResID(getResources().getIdentifier("ic_tint_bag", "drawable", mPackageName));
+        item1.setActiveBgResID(R.drawable.bg_bottom_navi_selected);
+        item1.setInactiveBgResID(R.drawable.bg_bottom_navi_normal);
         mBnbDefault.addItem(item1);
         mBnbDefaultList.add(item1);
 
         BottomItem item2 = new BottomItem();
         item2.setText("Book");
         item2.setIconResID(getResources().getIdentifier("ic_tint_book", "drawable", mPackageName));
+        item2.setActiveBgResID(R.drawable.bg_bottom_navi_selected);
+        item2.setInactiveBgResID(R.drawable.bg_bottom_navi_normal);
         mBnbDefault.addItem(item2);
         mBnbDefaultList.add(item2);
 
         BottomItem item3 = new BottomItem();
         item3.setText("Cart");
         item3.setIconResID(getResources().getIdentifier("ic_tint_cart", "drawable", mPackageName));
+        item3.setActiveBgResID(R.drawable.bg_bottom_navi_selected);
+        item3.setInactiveBgResID(R.drawable.bg_bottom_navi_normal);
         mBnbDefault.addItem(item3);
         mBnbDefaultList.add(item3);
 
         BottomItem item4 = new BottomItem();
         item4.setText("List");
         item4.setIconResID(getResources().getIdentifier("ic_tint_list", "drawable", mPackageName));
+        item4.setActiveBgResID(R.drawable.bg_bottom_navi_selected);
+        item4.setInactiveBgResID(R.drawable.bg_bottom_navi_normal);
         mBnbDefault.addItem(item4);
         mBnbDefaultList.add(item4);
 
         BottomItem item5 = new BottomItem();
         item5.setText("Rocket");
         item5.setIconResID(getResources().getIdentifier("ic_tint_rocket", "drawable", mPackageName));
+        item5.setActiveBgResID(R.drawable.bg_bottom_navi_selected);
+        item5.setInactiveBgResID(R.drawable.bg_bottom_navi_normal);
         mBnbDefault.addItem(item5);
         mBnbDefaultList.add(item5);
 

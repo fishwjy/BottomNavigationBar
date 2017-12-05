@@ -27,6 +27,10 @@ public class BottomItem {
     private int activeIconResID;
     private Drawable inactiveIconDrawable;
     private int inactiveIconResID;
+    // Background
+    private boolean pressEffect = true;
+    private int activeBgResID = 0;
+    private int inactiveBgResID = 0;
 
     public String getText() {
         return text;
@@ -130,5 +134,29 @@ public class BottomItem {
 
     public void setIconResID(int iconResID) {
         this.iconResID = iconResID;
+    }
+
+    public int getActiveBgResID() {
+        return activeBgResID;
+    }
+
+    public void setActiveBgResID(int activeBgResID) {
+        this.activeBgResID = activeBgResID;
+    }
+
+    public int getInactiveBgResID() {
+        return inactiveBgResID;
+    }
+
+    public void setInactiveBgResID(int inactiveBgResID) {
+        this.inactiveBgResID = inactiveBgResID;
+    }
+
+    public boolean isPressEffect() {
+        return pressEffect;
+    }
+
+    public void setPressEffect(boolean pressEffect) {
+        this.pressEffect = pressEffect;
     }
 }

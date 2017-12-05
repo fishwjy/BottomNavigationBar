@@ -65,7 +65,6 @@ public class BottomNavigationBar extends LinearLayout implements View.OnClickLis
 
     private void init() {
         setOrientation(HORIZONTAL);
-        setGravity(Gravity.CENTER);
         mList = new ArrayList<>();
     }
 
@@ -93,6 +92,8 @@ public class BottomNavigationBar extends LinearLayout implements View.OnClickLis
             btn.setTag(i);
             btn.setOnClickListener(this);
 
+            decorateBackground(btn, item);
+
             TextView tv_bottom = (TextView) btn.findViewById(R.id.tv_bottom);
             decorateTextView(tv_bottom, item);
 
@@ -100,7 +101,7 @@ public class BottomNavigationBar extends LinearLayout implements View.OnClickLis
             decorateImageView(ic_bottom, item);
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0,
-                    ViewGroup.LayoutParams.WRAP_CONTENT, 1);
+                    ViewGroup.LayoutParams.MATCH_PARENT, 1);
             addView(btn, params);
         }
 
@@ -124,6 +125,31 @@ public class BottomNavigationBar extends LinearLayout implements View.OnClickLis
         }
 
         mSelectedPosition = index;
+    }
+
+    private void decorateBackground(View v, BottomItem item) {
+        if (item.getActiveBgResID() == 0 || item.getInactiveBgResID() == 0) {
+            return;
+        }
+
+        StateListDrawable stateListDrawable = new StateListDrawable();
+
+        stateListDrawable.addState(new int[]{-android.R.attr.state_window_focused},
+                ContextCompat.getDrawable(getContext(), item.getInactiveBgResID()));
+
+        stateListDrawable.addState(new int[]{android.R.attr.state_selected},
+                ContextCompat.getDrawable(getContext(), item.getActiveBgResID()));
+
+        if (item.isPressEffect()) {
+            stateListDrawable.addState(new int[]{android.R.attr.state_pressed},
+                    ContextCompat.getDrawable(getContext(), item.getActiveBgResID()));
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            v.setBackground(stateListDrawable);
+        } else {
+            v.setBackgroundDrawable(stateListDrawable);
+        }
     }
 
     private void decorateTextView(TextView tv, BottomItem item) {
