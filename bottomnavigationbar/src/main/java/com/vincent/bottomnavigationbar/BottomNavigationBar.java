@@ -9,6 +9,7 @@ import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -179,7 +180,7 @@ public class BottomNavigationBar extends LinearLayout implements View.OnClickLis
         ColorStateList colorStateList = new ColorStateList(states, colors);
         tv.setTextColor(colorStateList);
 
-        tv.setTextSize((item.getTextSize() == 0) ? 10 : item.getTextSize());
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, (item.getTextSize() == 0) ? 12 : item.getTextSize());
     }
 
     private void decorateImageView(ImageView iv, BottomItem item) {

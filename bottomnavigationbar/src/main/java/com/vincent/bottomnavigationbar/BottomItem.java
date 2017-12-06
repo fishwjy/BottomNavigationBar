@@ -60,8 +60,8 @@ public class BottomItem {
         return textSize;
     }
 
-    public void setTextSize(int textSize) {
-        this.textSize = textSize;
+    public void setTextSize(int sp) {
+        this.textSize = sp;
     }
 
     public int getActiveIconColor() {
