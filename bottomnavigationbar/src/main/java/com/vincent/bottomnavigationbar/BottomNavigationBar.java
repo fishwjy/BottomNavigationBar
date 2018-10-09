@@ -8,6 +8,7 @@ import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -95,11 +96,17 @@ public class BottomNavigationBar extends LinearLayout implements View.OnClickLis
 
             decorateBackground(btn, item);
 
-            TextView tv_bottom = (TextView) btn.findViewById(R.id.tv_bottom);
-            decorateTextView(tv_bottom, item);
-
             ImageView ic_bottom = (ImageView) btn.findViewById(R.id.ic_bottom);
             decorateImageView(ic_bottom, item);
+
+            TextView tv_bottom = (TextView) btn.findViewById(R.id.tv_bottom);
+            if (!TextUtils.isEmpty(item.getText())) {
+                decorateTextView(tv_bottom, item);
+            } else {
+                tv_bottom.setVisibility(GONE);
+                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) ic_bottom.getLayoutParams();
+                params.gravity = Gravity.CENTER;
+            }
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0,
                     ViewGroup.LayoutParams.MATCH_PARENT, 1);
