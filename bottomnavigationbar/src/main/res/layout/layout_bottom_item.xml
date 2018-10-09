@@ -11,9 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:adjustViewBounds="true"
-        android:maxHeight="25dp"
-        android:maxWidth="25dp" />
+        android:adjustViewBounds="true" />
 
     <TextView
         android:id="@+id/tv_bottom"
