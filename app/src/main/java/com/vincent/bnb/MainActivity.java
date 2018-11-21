@@ -94,6 +94,12 @@ public class MainActivity extends AppCompatActivity {
         mBnbDefault.setSelectedPosition(2); //Set default selected item
         mTvBnbDefault.setText("Default Tint Mode : " + mBnbDefaultList.get(2).getText());
         mBnbDefault.initialize();
+
+        mBnbDefault.setBadgeNumber(0, 68);
+        mBnbDefault.setBadgeNumber(1, -1);
+        mBnbDefault.setBadgeNumber(2, 6);
+        mBnbDefault.setBadgeNumber(3, 0);
+        mBnbDefault.setBadgeNumber(4, 10);
     }
 
     private void initBnbDrawableMode() {
@@ -165,6 +171,12 @@ public class MainActivity extends AppCompatActivity {
         mBnbDrawable.setSelectedPosition(2); //Set default selected item
         mTvBnbDrawableMode.setText("Drawable Mode : " + mBnbDefaultList.get(2).getText());
         mBnbDrawable.initialize();
+
+        mBnbDrawable.setBadgeText(0, "WOW");
+        mBnbDrawable.setBadgeText(1, "");
+        mBnbDrawable.setBadgeText(2, "赞");
+        mBnbDrawable.setBadgeText(3, "");
+        mBnbDrawable.setBadgeText(4, "紧急");
     }
 
     private void initBnbMixMode() {

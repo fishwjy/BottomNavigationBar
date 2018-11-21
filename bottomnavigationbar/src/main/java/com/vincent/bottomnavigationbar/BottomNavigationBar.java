@@ -19,7 +19,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.vincent.bottomnavigationbar.badge.Badge;
+import com.vincent.bottomnavigationbar.badge.QBadgeView;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Vincent Woo
@@ -31,6 +35,7 @@ public class BottomNavigationBar extends LinearLayout implements View.OnClickLis
     private ArrayList<BottomItem> mBottomItems = new ArrayList<>();
     private int mSelectedPosition;
     private ArrayList<OnSelectedListener> mList;
+    private List<Badge> mBadges = new ArrayList<>();
 
     public BottomNavigationBar(Context context) {
         this(context, null);
@@ -111,6 +116,8 @@ public class BottomNavigationBar extends LinearLayout implements View.OnClickLis
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0,
                     ViewGroup.LayoutParams.MATCH_PARENT, 1);
             addView(btn, params);
+
+            mBadges.add(new QBadgeView(this.getContext()).bindTarget(btn).setShowShadow(false));
         }
 
         getChildAt(mSelectedPosition).setSelected(true);
@@ -267,5 +274,33 @@ public class BottomNavigationBar extends LinearLayout implements View.OnClickLis
 
     public interface OnSelectedListener {
         public void OnSelected(int oldPosition, int newPosition);
+    }
+
+    public void setBadgeNumber(int index, int number) {
+        if (number < 0) {
+            mBadges.get(index)
+                    .setBadgeNumber(number)
+                    .setGravityOffset(17, 5, true)
+                    .setBadgePadding(5, true);
+        } else {
+            mBadges.get(index)
+                    .setBadgeNumber(number)
+                    .setGravityOffset(12, 2, true)
+                    .setBadgePadding(3, true);
+        }
+    }
+
+    public void setBadgeText(int index, String text) {
+        if (text.length() == 0) {
+            mBadges.get(index)
+                    .setBadgeText(text)
+                    .setGravityOffset(17, 5, true)
+                    .setBadgePadding(5, true);
+        } else {
+            mBadges.get(index)
+                    .setBadgeText(text)
+                    .setGravityOffset(8, 2, true)
+                    .setBadgePadding(3, true);
+        }
     }
 }

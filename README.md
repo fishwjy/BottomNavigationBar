@@ -8,6 +8,7 @@ Please star this library if you like it. :)
 
 ## Demo
 ![Demo](/pic/demo.gif)
+![Demo1](/pic/demo1.png)
 
 ## Usage
 ### 1.Import to your project
@@ -44,6 +45,10 @@ Please star this library if you like it. :)
     });
 	bnb.setSelectedPosition(2); //Set default item
 	bnb.initialize();
+
+## Thanks
+Badge View provide by [BadgeView](https://github.com/qstumn/BadgeView)
+
 
 ## License
 ```
