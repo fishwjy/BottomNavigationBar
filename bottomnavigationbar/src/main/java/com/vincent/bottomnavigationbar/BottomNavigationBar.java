@@ -303,4 +303,12 @@ public class BottomNavigationBar extends LinearLayout implements View.OnClickLis
                     .setBadgePadding(3, true);
         }
     }
+
+    public Badge getBadge(int index) {
+        return mBadges.get(index);
+    }
+
+    public List<Badge> getBadges() {
+        return mBadges;
+    }
 }
