@@ -9,12 +9,11 @@ version = "1.0.6"
 android {
     resourcePrefix "vw_" //随意填写
 
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0.0"
 
@@ -29,12 +28,12 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.2.0'
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
 }
 
 def siteUrl = 'https://github.com/fishwjy/BottomNavigationBar'   // 项目的主页
