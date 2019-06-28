@@ -94,7 +94,7 @@ public class BottomNavigationBar extends LinearLayout implements View.OnClickLis
         for (int i = 0; i < mBottomItems.size(); i++) {
             BottomItem item = mBottomItems.get(i);
 
-            View btn = inflater.inflate(R.layout.layout_bottom_item, null);
+            View btn = inflater.inflate(R.layout.vw_layout_bottom_item, null);
             btn.setClickable(true);
             btn.setTag(i);
             btn.setOnClickListener(this);
@@ -188,7 +188,7 @@ public class BottomNavigationBar extends LinearLayout implements View.OnClickLis
                 new int[]{android.R.attr.state_selected}
         };
         int[] colors = new int[]{
-                (item.getInactiveTextColor() == 0) ? ContextCompat.getColor(getContext(), R.color.dark_grey) : item.getInactiveTextColor(),
+                (item.getInactiveTextColor() == 0) ? ContextCompat.getColor(getContext(), R.color.vw_dark_grey) : item.getInactiveTextColor(),
                 (item.getActiveTextColor() == 0) ? BnbUtil.fetchContextColor(getContext(), R.attr.colorPrimary) : item.getActiveTextColor()};
 
         ColorStateList colorStateList = new ColorStateList(states, colors);
@@ -213,7 +213,7 @@ public class BottomNavigationBar extends LinearLayout implements View.OnClickLis
                     new int[]{android.R.attr.state_selected}
             };
             int[] colors = new int[]{
-                    (item.getInactiveIconColor() == 0) ? ContextCompat.getColor(getContext(), R.color.dark_grey) : item.getInactiveIconColor(),
+                    (item.getInactiveIconColor() == 0) ? ContextCompat.getColor(getContext(), R.color.vw_dark_grey) : item.getInactiveIconColor(),
                     (item.getActiveIconColor() == 0) ? BnbUtil.fetchContextColor(getContext(), R.attr.colorPrimary) : item.getActiveIconColor()};
             StateListDrawable stateListDrawable = getStateListDrawable(drawable, states);
             Drawable drawable1 = getStateDrawable(stateListDrawable, colors, states);
