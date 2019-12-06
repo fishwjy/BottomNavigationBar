@@ -86,16 +86,12 @@ public class BottomNavigationBar extends LinearLayout implements View.OnClickLis
         return this;
     }
 
-    private void removeAllItem() {
+    public void removeAllItems() {
         this.removeAllViews();
         mBottomItems.clear();
     }
 
     public void initialize() {
-        if (this.getChildCount() > 0) {
-            removeAllItem();
-        }
-
         if (mSelectedPosition > mBottomItems.size() - 1) {
             throw new IllegalArgumentException("Bottom Item Index overflow !!!");
         }
