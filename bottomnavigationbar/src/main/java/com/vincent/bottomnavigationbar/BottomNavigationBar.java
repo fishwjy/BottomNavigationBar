@@ -1,8 +1,10 @@
 package com.vincent.bottomnavigationbar;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
@@ -17,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.vincent.bottomnavigationbar.badge.Badge;
@@ -31,11 +34,22 @@ import java.util.List;
  * Time: 14:29
  */
 
-public class BottomNavigationBar extends LinearLayout implements View.OnClickListener {
+public class BottomNavigationBar extends RelativeLayout implements View.OnClickListener {
     private ArrayList<BottomItem> mBottomItems = new ArrayList<>();
     private int mSelectedPosition;
     private ArrayList<OnSelectedListener> mList;
     private List<Badge> mBadges = new ArrayList<>();
+
+    private LinearLayout ll_container;
+
+    private static final int DEFAULT_CONTAINER_HEIGHT = 50;
+    private float containerHeight = DEFAULT_CONTAINER_HEIGHT;
+
+    private static final int DEFAULT_BIG_HEIGHT = 80;
+    private float bigHeight = DEFAULT_BIG_HEIGHT;
+
+    private static final int DEFAULT_BIG_INDEX = -1;
+    private int bigIndex = DEFAULT_BIG_INDEX;
 
     public BottomNavigationBar(Context context) {
         this(context, null);
@@ -47,31 +61,35 @@ public class BottomNavigationBar extends LinearLayout implements View.OnClickLis
 
     public BottomNavigationBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-//        parseAttrs(context, attrs);
+        parseAttrs(context, attrs);
         init();
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public BottomNavigationBar(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-//        parseAttrs(context, attrs);
+        parseAttrs(context, attrs);
         init();
     }
 
-//    private void parseAttrs(Context context, AttributeSet attrs) {
-//        if (attrs != null) {
-//            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.BottomNavigationBar, 0, 0);
-//            mBackgroundColor = typedArray.getColor(R.styleable.BottomNavigationBar_bnbBackgroundColor,
-//                    BnbUtil.fetchContextColor(context, android.R.color.white));
-//
-//            typedArray.recycle();
-//        } else {
-//            mBackgroundColor = BnbUtil.fetchContextColor(context, android.R.color.white);
-//        }
-//    }
+    @SuppressLint("CustomViewStyleable")
+    private void parseAttrs(Context context, AttributeSet attrs) {
+        if (attrs != null) {
+            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.vwBottomNavigationBar, 0, 0);
+            containerHeight = typedArray.getDimension(R.styleable.vwBottomNavigationBar_vwContainerHeight, DEFAULT_CONTAINER_HEIGHT);
+            bigHeight = typedArray.getDimension(R.styleable.vwBottomNavigationBar_vwBigHeight, DEFAULT_BIG_HEIGHT);
+            bigIndex = typedArray.getInt(R.styleable.vwBottomNavigationBar_vwBigIndex, DEFAULT_BIG_INDEX);
+            typedArray.recycle();
+        }
+    }
 
     private void init() {
-        setOrientation(HORIZONTAL);
+        setClipChildren(false);
+        ll_container = new LinearLayout(getContext());
+        ll_container.setOrientation(LinearLayout.HORIZONTAL);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) containerHeight);
+        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        addView(ll_container, params);
         mList = new ArrayList<>();
     }
 
@@ -119,14 +137,20 @@ public class BottomNavigationBar extends LinearLayout implements View.OnClickLis
                 params.gravity = Gravity.CENTER;
             }
 
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0,
-                    ViewGroup.LayoutParams.MATCH_PARENT, 1);
-            addView(btn, params);
+            LinearLayout.LayoutParams params;
+            if (i == bigIndex) {
+                params = new LinearLayout.LayoutParams(0, (int) bigHeight, 1);
+            } else {
+                params = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1);
+            }
+            params.gravity = Gravity.BOTTOM;
+
+            ll_container.addView(btn, params);
 
             mBadges.add(new QBadgeView(this.getContext()).bindTarget(btn).setShowShadow(false));
         }
 
-        getChildAt(mSelectedPosition).setSelected(true);
+        ll_container.getChildAt(mSelectedPosition).setSelected(true);
     }
 
     @Override
@@ -138,8 +162,8 @@ public class BottomNavigationBar extends LinearLayout implements View.OnClickLis
     }
 
     private void selectItem(int index) {
-        getChildAt(mSelectedPosition).setSelected(false);
-        getChildAt(index).setSelected(true);
+        ll_container.getChildAt(mSelectedPosition).setSelected(false);
+        ll_container.getChildAt(index).setSelected(true);
 
         for (OnSelectedListener listener : mList) {
             listener.OnSelected(mSelectedPosition, index);

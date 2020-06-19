@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="vwBottomNavigationBar">
+        <attr name="vwContainerHeight" format="dimension" />
+        <attr name="vwBigIndex" format="integer" />
+        <attr name="vwBigHeight" format="dimension" />
+    </declare-styleable>
+
+</resources>
