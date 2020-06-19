@@ -37,7 +37,7 @@ public class DrawableActivity extends AppCompatActivity {
         mBnbDrawableModeList = new ArrayList<>();
         mTvBnbDrawableMode = (TextView) findViewById(R.id.tv_bnb_drawable);
         BottomNavigationBar mBnbDrawable = (BottomNavigationBar) findViewById(R.id.bnb_drawable);
-        mBnbDrawable.addOnSelectedListener(new BottomNavigationBar.OnSelectedListener() {
+        mBnbDrawable.setOnSelectedListener(new BottomNavigationBar.OnSelectedListener() {
             @Override
             public void OnSelected(int oldPosition, int newPosition) {
                 mTvBnbDrawableMode.setText("Drawable Mode : " + mBnbDrawableModeList.get(newPosition).getText());

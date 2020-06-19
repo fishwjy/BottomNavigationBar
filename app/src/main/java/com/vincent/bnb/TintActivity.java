@@ -1,6 +1,7 @@
 package com.vincent.bnb;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -35,8 +36,8 @@ public class TintActivity extends AppCompatActivity {
     private void initBnbDefault() {
         mBnbDefaultList = new ArrayList<>();
         mTvBnbDefault = (TextView) findViewById(R.id.tv_bnb_default);
-        BottomNavigationBar mBnbDefault = (BottomNavigationBar) findViewById(R.id.bnb_default);
-        mBnbDefault.addOnSelectedListener(new BottomNavigationBar.OnSelectedListener() {
+        final BottomNavigationBar mBnbDefault = (BottomNavigationBar) findViewById(R.id.bnb_default);
+        mBnbDefault.setOnSelectedListener(new BottomNavigationBar.OnSelectedListener() {
             @Override
             public void OnSelected(int oldPosition, int newPosition) {
                 mTvBnbDefault.setText("Default Tint Mode : " + mBnbDefaultList.get(newPosition).getText());

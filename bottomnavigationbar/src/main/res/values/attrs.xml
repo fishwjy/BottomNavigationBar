@@ -2,7 +2,6 @@
 <resources>
 
     <declare-styleable name="vwBottomNavigationBar">
-        <attr name="vwContainerHeight" format="dimension" />
         <attr name="vwBigIndex" format="integer" />
         <attr name="vwBigHeight" format="dimension" />
     </declare-styleable>

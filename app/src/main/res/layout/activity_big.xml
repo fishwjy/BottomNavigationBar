@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:clipChildren="false">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -11,7 +11,7 @@
         android:background="#EEEEEE">
 
         <TextView
-            android:id="@+id/tv_bnb_mix"
+            android:id="@+id/tv_bnb_big"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true" />
@@ -19,20 +19,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_bnb_mix"
+            android:layout_below="@id/tv_bnb_big"
             android:layout_centerHorizontal="true"
             android:layout_margin="10dp"
             android:gravity="center"
-            android:text="You can set different color, drawable or mode for every item independently."
+            android:text="Big Icon Mode must set the attribute clipChildren of parent view of BottomNavigationBar to false. "
             android:textColor="@color/colorPrimary" />
 
     </RelativeLayout>
 
     <com.vincent.bottomnavigationbar.BottomNavigationBar
-        android:id="@+id/bnb_mix"
+        android:id="@+id/bnb_big"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="#FFFFFF" />
+        android:background="@android:color/white"
+        app:vwBigIndex="2"
+        app:vwBigHeight="80dp" />
 
 </RelativeLayout>

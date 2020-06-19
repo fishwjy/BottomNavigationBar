@@ -31,10 +31,8 @@
     <com.vincent.bottomnavigationbar.BottomNavigationBar
         android:id="@+id/bnb_drawable"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="#FFFFFF"
-        app:vwContainerHeight="50dp"
-        tools:layout_height="50dp" />
+        android:background="#FFFFFF" />
 
 </RelativeLayout>

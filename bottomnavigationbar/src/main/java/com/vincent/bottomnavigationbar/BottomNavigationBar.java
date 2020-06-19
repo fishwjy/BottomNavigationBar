@@ -12,11 +12,13 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -34,16 +36,11 @@ import java.util.List;
  * Time: 14:29
  */
 
-public class BottomNavigationBar extends RelativeLayout implements View.OnClickListener {
+public class BottomNavigationBar extends LinearLayout implements View.OnClickListener {
     private ArrayList<BottomItem> mBottomItems = new ArrayList<>();
     private int mSelectedPosition;
-    private ArrayList<OnSelectedListener> mList;
+    private OnSelectedListener mListener;
     private List<Badge> mBadges = new ArrayList<>();
-
-    private LinearLayout ll_container;
-
-    private static final int DEFAULT_CONTAINER_HEIGHT = 50;
-    private float containerHeight = DEFAULT_CONTAINER_HEIGHT;
 
     private static final int DEFAULT_BIG_HEIGHT = 80;
     private float bigHeight = DEFAULT_BIG_HEIGHT;
@@ -76,7 +73,6 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
     private void parseAttrs(Context context, AttributeSet attrs) {
         if (attrs != null) {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.vwBottomNavigationBar, 0, 0);
-            containerHeight = typedArray.getDimension(R.styleable.vwBottomNavigationBar_vwContainerHeight, DEFAULT_CONTAINER_HEIGHT);
             bigHeight = typedArray.getDimension(R.styleable.vwBottomNavigationBar_vwBigHeight, DEFAULT_BIG_HEIGHT);
             bigIndex = typedArray.getInt(R.styleable.vwBottomNavigationBar_vwBigIndex, DEFAULT_BIG_INDEX);
             typedArray.recycle();
@@ -84,13 +80,7 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
     }
 
     private void init() {
-        setClipChildren(false);
-        ll_container = new LinearLayout(getContext());
-        ll_container.setOrientation(LinearLayout.HORIZONTAL);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) containerHeight);
-        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-        addView(ll_container, params);
-        mList = new ArrayList<>();
+        setOrientation(LinearLayout.HORIZONTAL);
     }
 
     public BottomNavigationBar addItem(BottomItem item) {
@@ -145,12 +135,12 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
             }
             params.gravity = Gravity.BOTTOM;
 
-            ll_container.addView(btn, params);
+            addView(btn, params);
 
             mBadges.add(new QBadgeView(this.getContext()).bindTarget(btn).setShowShadow(false));
         }
 
-        ll_container.getChildAt(mSelectedPosition).setSelected(true);
+        getChildAt(mSelectedPosition).setSelected(true);
     }
 
     @Override
@@ -161,12 +151,12 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
         }
     }
 
-    private void selectItem(int index) {
-        ll_container.getChildAt(mSelectedPosition).setSelected(false);
-        ll_container.getChildAt(index).setSelected(true);
+    public void selectItem(int index) {
+        getChildAt(mSelectedPosition).setSelected(false);
+        getChildAt(index).setSelected(true);
 
-        for (OnSelectedListener listener : mList) {
-            listener.OnSelected(mSelectedPosition, index);
+        if (mListener != null) {
+            mListener.OnSelected(mSelectedPosition, index);
         }
 
         mSelectedPosition = index;
@@ -298,12 +288,12 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
         return mSelectedPosition;
     }
 
-    public void addOnSelectedListener(OnSelectedListener listener) {
-        mList.add(listener);
+    public void setOnSelectedListener(OnSelectedListener listener) {
+        this.mListener = listener;
     }
 
     public interface OnSelectedListener {
-        public void OnSelected(int oldPosition, int newPosition);
+        void OnSelected(int oldPosition, int newPosition);
     }
 
     public void setBadgeNumber(int index, int number) {

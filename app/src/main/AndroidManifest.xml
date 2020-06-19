@@ -19,6 +19,7 @@
         <activity android:name="com.vincent.bnb.TintActivity" />
         <activity android:name="com.vincent.bnb.DrawableActivity" />
         <activity android:name="com.vincent.bnb.MixActivity" />
+        <activity android:name="com.vincent.bnb.BigIconActivity" />
     </application>
 
 </manifest>

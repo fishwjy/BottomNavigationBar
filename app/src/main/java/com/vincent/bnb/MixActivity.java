@@ -37,7 +37,7 @@ public class MixActivity extends AppCompatActivity {
         mBnbMixModeList = new ArrayList<>();
         mTvBnbMixMode = (TextView) findViewById(R.id.tv_bnb_mix);
         BottomNavigationBar mBnbMix = (BottomNavigationBar) findViewById(R.id.bnb_mix);
-        mBnbMix.addOnSelectedListener(new BottomNavigationBar.OnSelectedListener() {
+        mBnbMix.setOnSelectedListener(new BottomNavigationBar.OnSelectedListener() {
             @Override
             public void OnSelected(int oldPosition, int newPosition) {
                 mTvBnbMixMode.setText("Mix : " + mBnbMixModeList.get(newPosition).getText());

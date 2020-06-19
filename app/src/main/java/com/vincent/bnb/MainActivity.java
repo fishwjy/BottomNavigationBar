@@ -45,5 +45,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button btn_big = findViewById(R.id.btn_big);
+        btn_big.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, BigIconActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

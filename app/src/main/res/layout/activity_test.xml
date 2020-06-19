@@ -94,7 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@id/tv_bottom"
-                android:src="@drawable/main_ic_workbench" />
+                android:src="@drawable/ic_big_home" />
 
             <TextView
                 android:id="@+id/tv_bottom"
